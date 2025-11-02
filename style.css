@@ -1,0 +1,307 @@
+:root{
+    --primary-color: rgba(158, 8, 86, 0.8);
+    --secondary-color: rgba(89, 3, 48, 0.8);
+    --alternative-color: rgba(255, 255, 255, 0.8);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: var(--primary-color);
+}
+
+/* Header Styles*/
+
+header{
+    background-color: var(--secondary-color);
+}
+
+#header img {
+    width: 250px;
+    height: 150px;
+}
+
+/* Main Styles*/
+
+main{
+    max-width: max-content;
+    padding: 150px 160px
+}
+
+.safariPicture{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+figure img{
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.gepard{
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+    border-radius: 15px;
+    object-fit: fill;
+}
+
+.giraffe{
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+    border-radius: 15px;
+    object-fit: fill;
+}
+
+.card{
+    background-color: var(--alternative-color);
+    border-radius: 15px;
+    padding: 15px;
+    margin: 15px;
+    width: 320px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.06);
+    transition: 0.3s;
+}
+
+/* Dialog Styling mit flexiblen Containern - Variante 2 */
+#myDialog {
+    border: none;
+    border-radius: 15px;
+    padding: 0;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    
+    /* Responsive Größen mit clamp() */
+    width: clamp(300px, 80vw, 900px);
+    height: clamp(400px, 80vh, 700px);
+    
+    /* Overflow-Kontrolle - verhindert Scrollbalken */
+    overflow: hidden;
+    
+    /* Zentrierung */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    
+    /* Flexbox Layout für bessere Kontrolle */
+    display: flex;
+    flex-direction: column;
+}
+
+#myDialog::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Header fixe Höhe */
+.dialog-header {
+    flex: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+/* Content flexibel - passt sich automatisch an */
+.dialogContent {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* Image Container anpassbar */
+.image-container {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.nav-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.nav-btn:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* Footer fixe Höhe */
+.dialog-footer {
+    flex: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* Responsive Anpassungen für kleine Bildschirme */
+@media (max-width: 768px) {
+    #myDialog {
+        width: clamp(280px, 95vw, 400px);
+        height: clamp(350px, 95vh, 600px);
+    }
+    
+    .dialogContent {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .nav-btn {
+        order: 2;
+        font-size: 20px;
+        padding: 8px 12px;
+    }
+    
+    .image-container {
+        order: 1;
+        width: 100%;
+    }
+    
+    .dialog-header,
+    .dialog-footer {
+        padding: 15px;
+    }
+}
+
+/* Tablet Anpassungen */
+@media (min-width: 769px) and (max-width: 1024px) {
+    #myDialog {
+        width: clamp(400px, 75vw, 700px);
+        height: clamp(450px, 75vh, 650px);
+    }
+}
+
+/* Desktop Anpassungen */
+@media (min-width: 1025px) {
+    #myDialog {
+        width: clamp(500px, 70vw, 900px);
+        height: clamp(500px, 70vh, 700px);
+    }
+}
+
+/* Animation für sanftes Öffnen */
+#myDialog {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#myDialog[open] {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Zusätzliche Anpassungen für sehr kleine Bildschirme */
+@media (max-width: 480px) {
+    #myDialog {
+        width: clamp(260px, 98vw, 350px);
+        height: clamp(300px, 98vh, 500px);
+    }
+    
+    .dialog-header,
+    .dialog-footer {
+        padding: 10px 15px;
+    }
+    
+    .dialogContent {
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .nav-btn {
+        font-size: 18px;
+        padding: 6px 10px;
+    }
+    
+    .close-btn {
+        font-size: 20px;
+    }
+}
+
+/* Hochformat-spezifische Anpassungen */
+@media (orientation: portrait) and (max-height: 600px) {
+    #myDialog {
+        height: clamp(280px, 90vh, 400px);
+    }
+    
+    .dialog-header,
+    .dialog-footer {
+        padding: 10px 20px;
+    }
+    
+    .dialogContent {
+        padding: 10px 20px;
+    }
+}
+
+/* Footer Styles*/
+
+footer{
+    display: flex;
+    background-color: var(--secondary-color);
+    justify-content: center;
+    align-items: center;
+}
+
+footer img {
+    width: 150px;
+    height: 150px;
+}

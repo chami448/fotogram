@@ -1,0 +1,88 @@
+{
+  "animals": [
+    {
+      "id": 1,
+      "title": "Flamingos",
+      "file": "./img/birds.jpg",
+      "alt": "birds",
+      "description": "Elegante rosa Flamingos in ihrer natürlichen Umgebung"
+    },
+    {
+      "id": 2,
+      "title": "Gepard",
+      "file": "./img/cheetah.jpg",
+      "alt": "Gepard",
+      "description": "Der schnellste Landläufer der Welt"
+    },
+    {
+      "id": 3,
+      "title": "Elefanten",
+      "file": "./img/elephants_1.jpg",
+      "alt": "Elefanten",
+      "description": "Majestätische Elefanten"
+    },
+    {
+      "id": 4,
+      "title": "Elefanten",
+      "file": "./img/elephants_2.jpg",
+      "alt": "Elefanten",
+      "description": "Elefanten beim Trinken"
+    },
+    {
+      "id": 5,
+      "title": "Gazelle",
+      "file": "./img/gazelle.jpg",
+      "alt": "Gazelle",
+      "description": "Anmutige Gazelle in der Savanne"
+    },
+    {
+      "id": 6,
+      "title": "Giraffe",
+      "file": "./img/giraffe.jpg",
+      "alt": "Giraffe",
+      "description": "Das höchste Tier der Welt"
+    },
+    {
+      "id": 7,
+      "title": "Nilpferd",
+      "file": "./img/hippo.jpg",
+      "alt": "Nilpferd",
+      "description": "Nilpferd am ausruhen"
+    },
+    {
+      "id": 8,
+      "title": "Leopard",
+      "file": "./img/leopard_1.jpg",
+      "alt": "Leopard",
+      "description": "Leopard auf der Jagd"
+    },
+    {
+      "id": 9,
+      "title": "Leopard",
+      "file": "./img/leopard_2.jpg",
+      "alt": "Leopard",
+      "description": "Ruhender Leopard im Baum"
+    },
+    {
+      "id": 10,
+      "title": "Löwe",
+      "file": "./img/lion_1.jpg",
+      "alt": "Löwe",
+      "description": "Der König der Tiere"
+    },
+    {
+      "id": 11,
+      "title": "Löwe",
+      "file": "./img/lion_2.jpg",
+      "alt": "Löwe",
+      "description": "Löwe in der Savanne"
+    },
+    {
+      "id": 12,
+      "title": "Geier",
+      "file": "./img/vulture.jpg",
+      "alt": "Geier",
+      "description": "Geier auf einem Baum"
+    }
+  ]
+}
