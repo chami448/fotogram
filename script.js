@@ -1,61 +1,192 @@
-// Einfache Variablen für die App
+// Tierdaten direkt im Code - ersetzt die JSON-Datei
+const ANIMALS_DATA = {
+    animals: [
+        {
+            id: 1,
+            title: "Flamingos",
+            file: "./img/birds.jpg",
+            alt: "birds",
+            description: "Elegante rosa Flamingos in ihrer natürlichen Umgebung"
+        },
+        {
+            id: 2,
+            title: "Gepard",
+            file: "./img/cheetah.jpg",
+            alt: "Gepard",
+            description: "Der schnellste Landläufer der Welt"
+        },
+        {
+            id: 3,
+            title: "Elefanten",
+            file: "./img/elephants_1.jpg",
+            alt: "Elefanten",
+            description: "Majestätische Elefantenherde in der Wildnis"
+        },
+        {
+            id: 4,
+            title: "Elefanten",
+            file: "./img/elephants_2.jpg",
+            alt: "Elefanten",
+            description: "Elefanten beim Trinken am Wasserloch"
+        },
+        {
+            id: 5,
+            title: "Gazelle",
+            file: "./img/gazelle.jpg",
+            alt: "Gazelle",
+            description: "Anmutige Gazelle springend in der Savanne"
+        },
+        {
+            id: 6,
+            title: "Giraffe",
+            file: "./img/giraffe.jpg",
+            alt: "Giraffe",
+            description: "Hohe Giraffe mit charakteristischem Fleckenmuster"
+        },
+        {
+            id: 7,
+            title: "Nilpferd",
+            file: "./img/hippo.jpg",
+            alt: "Nilpferd",
+            description: "Großes Nilpferd im Wasser mit offenem Maul"
+        },
+        {
+            id: 8,
+            title: "Leopard",
+            file: "./img/leopard_1.jpg",
+            alt: "Leopard",
+            description: "Getarnter Leopard auf der Jagd im hohen Gras"
+        },
+        {
+            id: 9,
+            title: "Leopard",
+            file: "./img/leopard_2.jpg",
+            alt: "Leopard",
+            description: "Ruhender Leopard entspannt auf einem Baumast"
+        },
+        {
+            id: 10,
+            title: "Löwe",
+            file: "./img/lion_1.jpg",
+            alt: "Löwe",
+            description: "Stolzer Löwe mit prächtiger Mähne als König der Tiere"
+        },
+        {
+            id: 11,
+            title: "Löwe",
+            file: "./img/lion_2.jpg",
+            alt: "Löwe",
+            description: "Löwenpaar zusammen ruhend in der warmen Savanne"
+        },
+        {
+            id: 12,
+            title: "Geier",
+            file: "./img/vulture.jpg",
+            alt: "Geier",
+            description: "Geier mit ausgebreiteten Flügeln hoch am Himmel"
+        }
+    ]
+};
+
+// Globale Variablen für die App
 let animalsData = [];
 let currentImageIndex = 0;
 let dialog = null;
 
-// App starten
+// Main Container Reference 
+const CONTENT = document.getElementById("main");
+
+// App starten 
 function init() {
     console.log('Fotogram App startet...');
-    
-    // Dialog Element finden
-    dialog = document.getElementById('myDialog');
     
     // Tierdaten laden
     loadAnimalsData();
     
-    // Alle Event Listener einrichten
+    // Main Content mit innerHTML erstellen
+    CONTENT.innerHTML = renderMain();
+    
+    // Dialog Elemente werden hinzugefügt, sobald Elemente im DOM sind
+     dialog = document.getElementById('myDialog');
+    
+    // Event Listener einrichten
     setupEventListeners();
     
     console.log('App ist bereit!');
 }
 
-// Verbesserte loadAnimalsData() Funktion
-async function loadAnimalsData() {
-    try {
-        // Timeout hinzufügen um Extension-Konflikte zu vermeiden
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000);
-        
-        const response = await fetch('./animals.json', {
-            signal: controller.signal,
-            cache: 'no-cache' // Verhindert Extension-Cache-Konflikte
-        });
-        
-        clearTimeout(timeoutId);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        animalsData = await response.json();
-        console.log('Tierdaten geladen:', animalsData);
-        
-    } catch (error) {
-        // Extension-Fehler ignorieren
-        if (error.name === 'AbortError' || error.message.includes('message channel')) {
-            console.log('Extension-Konflikt ignoriert, verwende Fallback');
-        } else {
-            console.error('Fehler beim Laden der Tierdaten:', error);
-        }
-        
-        // Fallback: Wenn JSON nicht lädt, mit leeren Daten weiterarbeiten
-        animalsData = { animals: [] };
-    }
+// Tierdaten laden 
+function loadAnimalsData() {
+    animalsData = ANIMALS_DATA;
+    console.log('Tierdaten geladen:', animalsData);
 }
 
-// Alle Event Listener einrichten
+// Main Content rendern 
+function renderMain() {
+    return `
+        ${renderSafariSection()}
+        ${renderDialogSection()}
+    `;
+}
+
+// Safari Picture Section rendern
+function renderSafariSection() {
+    return `
+        <section class="safariPicture" aria-label="Safari Tiergalerie">
+            ${animalsData.animals.map((animal, index) => renderAnimalCard(animal, index)).join('')}
+        </section>
+    `;
+}
+
+// Einzelne Animal Card rendern
+function renderAnimalCard(animal, index) {
+    // Spezielle CSS-Klassen für bestimmte Tiere
+    const specialClass = animal.title === 'Gepard' ? ' gepard' : 
+                        animal.title === 'Giraffe' ? ' giraffe' : '';
+    
+    return `
+        <div class="card" role="button" tabindex="0" 
+             aria-describedby="card-${animal.id}-desc" 
+             data-animal-id="${animal.id}">
+            <figure class="cardsItems">
+                <img class="${specialClass.trim()}" src="${animal.file}" 
+                     alt="${animal.description}"
+                     loading="lazy" width="300" height="200">
+                <figcaption id="card-${animal.id}-desc">${animal.title}</figcaption>
+            </figure>
+        </div>
+    `;
+}
+
+// Dialog Section rendern
+function renderDialogSection() {
+    return `
+        <section>
+            <dialog id="myDialog">
+                <div class="dialog-header">
+                    <h2 id="dialogTitle">Tiername</h2>
+                    <button id="closeBtn" class="close-btn">&times;</button>
+                </div>
+                <div class="dialogContent">
+                    <button id="prevBtn" class="nav-btn prev-btn">&#8249;</button>
+                    <div class="image-container">
+                        <img id="dialogImage" src="#" alt="#">
+                        <p id="dialogDescription">Beschreibung des Tieres</p>
+                    </div>
+                    <button id="nextBtn" class="nav-btn next-btn">&#8250;</button>
+                </div>
+                <div class="dialog-footer">
+                    <span id="pictureCounter">1 / 12</span>
+                    <button id="closeButton">Schließen</button>
+                </div>
+            </dialog>
+        </section>
+    `;
+}
+
+// Event Listener einrichten
 function setupEventListeners() {
-    // Alle Karten finden
+    // Alle Karten finden 
     const cards = document.querySelectorAll('.card');
     
     // Für jede Karte Event Listener hinzufügen
@@ -78,113 +209,101 @@ function setupEventListeners() {
     const closeBtn = document.getElementById('closeBtn');
     const closeButton = document.getElementById('closeButton');
     
-    closeBtn.addEventListener('click', closeDialog);
-    closeButton.addEventListener('click', closeDialog);
+    if (closeBtn) closeBtn.addEventListener('click', closeDialog);
+    if (closeButton) closeButton.addEventListener('click', closeDialog);
     
     // Navigation Buttons
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
-    prevBtn.addEventListener('click', showPreviousImage);
-    nextBtn.addEventListener('click', showNextImage);
+    if (prevBtn) prevBtn.addEventListener('click', showPreviousImage);
+    if (nextBtn) nextBtn.addEventListener('click', showNextImage);
     
     // Außerhalb des Dialogs klicken zum Schließen
-    dialog.addEventListener('click', function(e) {
-        if (e.target === dialog) {
-            closeDialog();
-        }
-    });
+    if (dialog) {
+        dialog.addEventListener('click', function(e) {
+            if (e.target === dialog) {
+                closeDialog();
+            }
+        });
+    }
     
     // Tastatur-Navigation im gesamten Dokument
     document.addEventListener('keydown', handleKeyPress);
+    
+    console.log('Event Listeners eingerichtet für', cards.length, 'Cards');
 }
 
-// Dialog öffnen (vereinfacht - ohne Zentrierung)
+// Dialog öffnen
 function openDialog(imageIndex) {
-    // Aktuellen Index setzen
     currentImageIndex = imageIndex;
-    
-    // Dialog-Inhalt aktualisieren
     updateDialogContent();
-    
-    // Dialog öffnen (CSS übernimmt die Zentrierung)
-    dialog.showModal();
+    if (dialog) dialog.showModal();
 }
 
 // Dialog schließen
 function closeDialog() {
-    dialog.close();
+    if (dialog) dialog.close();
 }
 
-// Dialog-Inhalt mit aktuellen Tierdaten füllen
+// Dialog-Inhalt aktualisieren
 function updateDialogContent() {
-    // Prüfen ob Daten vorhanden sind
     if (!animalsData.animals || animalsData.animals.length === 0) {
         console.log('Keine Tierdaten verfügbar');
         return;
     }
     
-    // Aktuelles Tier holen
     const animal = animalsData.animals[currentImageIndex];
     
-    // Titel setzen
-    document.getElementById('dialogTitle').textContent = animal.title;
+    // Elemente finden und aktualisieren
+    const titleElement = document.getElementById('dialogTitle');
+    const imageElement = document.getElementById('dialogImage');
+    const descriptionElement = document.getElementById('dialogDescription');
+    const counterElement = document.getElementById('pictureCounter');
     
-    // Bild setzen
-    const dialogImage = document.getElementById('dialogImage');
-    dialogImage.src = animal.file;
-    dialogImage.alt = animal.alt;
-    
-    // Beschreibung setzen
-    document.getElementById('dialogDescription').textContent = animal.description;
-    
-    // Zähler aktualisieren
-    const counter = `${currentImageIndex + 1} / ${animalsData.animals.length}`;
-    document.getElementById('pictureCounter').textContent = counter;
+    if (titleElement) titleElement.textContent = animal.title;
+    if (imageElement) {
+        imageElement.src = animal.file;
+        imageElement.alt = animal.alt;
+    }
+    if (descriptionElement) descriptionElement.textContent = animal.description;
+    if (counterElement) {
+        counterElement.textContent = `${currentImageIndex + 1} / ${animalsData.animals.length}`;
+    }
 }
 
-// Zum vorherigen Bild wechseln
+// Vorheriges Bild
 function showPreviousImage() {
-    // Zum letzten Bild springen wenn am Anfang
     if (currentImageIndex === 0) {
         currentImageIndex = animalsData.animals.length - 1;
     } else {
         currentImageIndex = currentImageIndex - 1;
     }
-    
-    // Dialog aktualisieren
     updateDialogContent();
 }
 
-// Zum nächsten Bild wechseln
+// Nächstes Bild
 function showNextImage() {
-    // Zum ersten Bild springen wenn am Ende
     if (currentImageIndex === animalsData.animals.length - 1) {
         currentImageIndex = 0;
     } else {
         currentImageIndex = currentImageIndex + 1;
     }
-    
-    // Dialog aktualisieren
     updateDialogContent();
 }
 
-// Tastatur-Eingaben verarbeiten
+// Tastatur-Navigation
 function handleKeyPress(e) {
-    // Nur wenn Dialog offen ist
-    if (dialog.open) {
+    if (dialog && dialog.open) {
         if (e.key === 'Escape') {
-            // ESC = Dialog schließen
             closeDialog();
         } else if (e.key === 'ArrowLeft') {
-            // Pfeil links = Vorheriges Bild
             showPreviousImage();
         } else if (e.key === 'ArrowRight') {
-            // Pfeil rechts = Nächstes Bild
             showNextImage();
         }
     }
 }
 
-// App starten wenn Seite geladen ist
+// App starten - wie in Ihrem Beispiel
 document.addEventListener('DOMContentLoaded', init);

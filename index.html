@@ -1,173 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fotogram</title>
     <link rel="shortcut icon" href="./layout/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
+    
 </head>
 <body>
 <header id="header" role="banner">
     <img src="/layout/Fotogram_Logo.svg" alt="Fotogram Logo">
 </header>
 
-
-
-
 <main id="main" role="main">
-
-<section class="safariPicture" aria-label="Safari Tiergalerie">
-
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-1-desc" 
-     data-animal-id="1">
-    <figure class="cardsItems">
-        <img src="./img/birds.jpg" alt="Gruppe von rosa Flamingos am Wasser"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-1-desc">Flamingos</figcaption>
-    </figure>
-</div>
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-2-desc" 
-     data-animal-id="2">
-    <figure class="cardsItems">
-        <img class="gepard" src="./img/cheetah.jpg" alt="Schneller Gepard in der afrikanischen Savanne"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-2-desc">Gepard</figcaption>
-    </figure>
-</div>
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-3-desc" 
-     data-animal-id="3">
-    <figure class="cardsItems">
-        <img src="./img/elephants_1.jpg" alt="Majestätische Elefanten in der Wildnis"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-3-desc">Elefanten</figcaption>
-    </figure>
-</div>
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-4-desc" 
-     data-animal-id="4">
-    <figure class="cardsItems">
-        <img src="./img/elephants_2.jpg" alt="Elefanten beim Trinken am Wasserloch"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-4-desc">Elefanten</figcaption>
-    </figure>
-</div>
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-5-desc" 
-     data-animal-id="5">
-    <figure class="cardsItems">
-        <img src="./img/gazelle.jpg" alt="Anmutige Gazelle in der Savanne"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-5-desc">Gazelle</figcaption>
-    </figure>
-</div>
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-6-desc" 
-     data-animal-id="6">
-    <figure class="cardsItems">
-        <img class="giraffe" src="./img/giraffe.jpg" alt="Zwei Giraffen nebeneinander stehend"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-6-desc">Giraffe</figcaption>
-    </figure>
-</div>
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-7-desc" 
-     data-animal-id="7">
-    <figure class="cardsItems">
-        <img src="./img/hippo.jpg" alt="Großes Nilpferd am ausruhen"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-7-desc">Nilpferd</figcaption>
-    </figure>
-</div>
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-8-desc" 
-     data-animal-id="8">
-    <figure class="cardsItems">
-        <img src="./img/leopard_1.jpg" alt="Getarnter Leopard auf der Jagd im hohen Gras"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-8-desc">Leopard</figcaption>
-    </figure>
-</div>
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-9-desc" 
-     data-animal-id="9">
-    <figure class="cardsItems">
-        <img src="./img/leopard_2.jpg" alt="Ruhender Leopard entspannt auf einem Baumast"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-9-desc">Leopard</figcaption>
-    </figure>
-</div>
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-10-desc" 
-     data-animal-id="10">
-    <figure class="cardsItems">
-        <img src="./img/lion_1.jpg" alt="Stolzer Löwe mit prächtiger Mähne als König der Tiere"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-10-desc">Löwe</figcaption>
-    </figure>
-</div>
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-11-desc" 
-     data-animal-id="11">
-    <figure class="cardsItems">
-        <img src="./img/lion_2.jpg" alt="Löwe ruhend in der warmen Savanne"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-11-desc">Löwe</figcaption>
-    </figure>
-</div>
-
-<div class="card" role="button" tabindex="0" 
-     aria-describedby="card-12-desc" 
-     data-animal-id="12">
-    <figure class="cardsItems">
-        <img src="./img/vulture.jpg" alt="Geier auf einem Ast sitzend"
-             loading="lazy" width="300" height="200">
-        <figcaption id="card-12-desc">Geier</figcaption>
-    </figure>
-</div>
-</section>
-<section>
-    <dialog id="myDialog">
-        <div class="dialog-header">
-            <h2 id="dialogTitle">Tiername</h2>
-            <button id="closeBtn" class="close-btn">&times;</button>
-        </div>
-        <div class="dialogContent">
-            <button id="prevBtn" class="nav-btn prev-btn">&#8249;</button>
-            <div class="image-container">
-                <img id="dialogImage" src="#" alt="#">
-                <p id="dialogDescription">Beschreibung des Tieres</p>
-            </div>
-            <button id="nextBtn" class="nav-btn next-btn">&#8250;</button>
-        </div>
-        <div class="dialog-footer">
-            <span id="pictureCounter">1 / 12</span>
-            <button id="closeButton">Schließen</button>
-        </div>
-    </dialog>
-</section>
+    <!-- Wird dynamisch durch JavaScript erstellt -->
 </main>
-
-
 
 <footer id="footer">
     <img src="./layout/favicon.png" alt="Logo">
 </footer>
     
+
+<script src="./script.js"></script>
 </body>
 </html>
