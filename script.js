@@ -1,4 +1,5 @@
-// Tierdaten direkt im Code - ersetzt die JSON-Datei
+// Tierdaten im Objekt zusammen gefasst
+// Ersetzt die separate JSON-Datei
 const ANIMALS_DATA = {
     animals: [
         {
@@ -133,13 +134,13 @@ function renderMain() {
 function renderSafariSection() {
     return `
         <section class="safariPicture" aria-label="Safari Tiergalerie">
-            ${animalsData.animals.map((animal, index) => renderAnimalCard(animal, index)).join('')}
+            ${animalsData.animals.map((animal) => renderAnimalCard(animal)).join('')}
         </section>
     `;
 }
 
 // Einzelne Animal Card rendern
-function renderAnimalCard(animal, index) {
+function renderAnimalCard(animal) {
     // Spezielle CSS-Klassen für bestimmte Tiere
     const specialClass = animal.title === 'Gepard' ? ' gepard' : 
                         animal.title === 'Giraffe' ? ' giraffe' : '';
