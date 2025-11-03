@@ -20,7 +20,7 @@ header{
     background-color: var(--secondary-color);
 }
 
-#header img {
+header img {
     width: 250px;
     height: 150px;
 }
