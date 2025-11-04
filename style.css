@@ -167,7 +167,6 @@ figure img{
     padding: 20px;
     border-top: 1px solid #eee;
 }
-/* Animation für sanftes Öffnen */
 #myDialog {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.8);
@@ -184,7 +183,6 @@ figure img{
 
 
 
-/* Responsive Anpassungen für kleine Bildschirme */
 
 @media (max-width: 768px) {
     .card:focus {
@@ -221,9 +219,7 @@ figure img{
     }
 }
 
-/* Responsive Design für 360px Bildschirme */
 @media (max-width: 360px) {
-    /* Header anpassen */
     header {
         padding: 4px 0;
     }
@@ -234,7 +230,6 @@ figure img{
         max-width: 88vw;
     }
     
-    /* Main Container */
     main {
         max-width: 100vw;
         padding: 18px 6px;
@@ -246,7 +241,6 @@ figure img{
         padding: 0;
     }
     
-    /* Cards für 360px Bildschirme */
     .card {
         width: calc(100vw - 18px);
         max-width: 300px;
@@ -255,7 +249,6 @@ figure img{
         border-radius: 8px;
     }
     
-    /* Bilder in Cards */
     figure img,
     .gepard,
     .giraffe {
@@ -267,12 +260,10 @@ figure img{
         object-fit: cover;
     }
 
-    /* Card Hover deaktivieren */
     .card:hover {
         transform: none;
     }
     
-    /* Dialog für 360px */
     #myDialog {
         max-width: 97vw;
         max-height: 94vh;
@@ -302,7 +293,6 @@ figure img{
         margin: 2px;
     }
     
-    /* Footer */
     footer {
         padding: 9px 0;
     }
@@ -314,9 +304,7 @@ figure img{
 }
 
 
-/* Sehr kleine Bildschirme (bis 320px) */
 @media (max-width: 320px) {
-    /* Header anpassen */
     header {
         padding: 5px 0;
     }
@@ -327,7 +315,6 @@ figure img{
         max-width: 90vw;
     }
     
-    /* Main Container extrem kompakt */
     main {
         max-width: 100vw;
         padding: 20px 5px;
@@ -338,7 +325,6 @@ figure img{
         gap: 8px;
         padding: 0;
     }
-     /* Cards für sehr kleine Bildschirme */
     .card {
         width: calc(100vw - 20px);
         max-width: 280px;
@@ -347,7 +333,6 @@ figure img{
         border-radius: 10px;
     }
     
-    /* Bilder in Cards kleiner */
     figure img,
     .gepard,
     .giraffe {
@@ -359,12 +344,12 @@ figure img{
         object-fit: cover;
     }
 
-    /* Card Hover deaktivieren auf sehr kleinen Bildschirmen */
+    
     .card:hover {
         transform: none;
     }
     
-    /* Dialog für sehr kleine Bildschirme */
+   
     #myDialog {
         max-width: 98vw;
         max-height: 95vh;
