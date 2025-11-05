@@ -14,14 +14,14 @@ const ANIMALS_DATA = {
             title: "Gepard",
             file: "./img/cheetah.jpg",
             alt: "Gepard",
-            description: "Der schnellste Landläufer der Welt"
+            description: "Das schnellste Landtier der Welt"
         },
         {
             id: 3,
             title: "Elefanten",
             file: "./img/elephants_1.jpg",
             alt: "Elefanten",
-            description: "Majestätische Elefantenherde in der Wildnis"
+            description: "Majestätische Elefanten in der Wildnis"
         },
         {
             id: 4,
@@ -35,7 +35,7 @@ const ANIMALS_DATA = {
             title: "Gazelle",
             file: "./img/gazelle.jpg",
             alt: "Gazelle",
-            description: "Anmutige Gazelle springend in der Savanne"
+            description: "Anmutige Gazelle in der Savanne"
         },
         {
             id: 6,
@@ -49,7 +49,7 @@ const ANIMALS_DATA = {
             title: "Nilpferd",
             file: "./img/hippo.jpg",
             alt: "Nilpferd",
-            description: "Großes Nilpferd im Wasser mit offenem Maul"
+            description: "Nilpferd entspannt am Strand"
         },
         {
             id: 8,
@@ -77,14 +77,14 @@ const ANIMALS_DATA = {
             title: "Löwe",
             file: "./img/lion_2.jpg",
             alt: "Löwe",
-            description: "Löwenpaar zusammen ruhend in der warmen Savanne"
+            description: "Löwe ruhend in der warmen Savanne"
         },
         {
             id: 12,
             title: "Geier",
             file: "./img/vulture.jpg",
             alt: "Geier",
-            description: "Geier mit ausgebreiteten Flügeln hoch am Himmel"
+            description: "Geier mit ausgebreiteten Flügeln hoch auf einem Baum"
         }
     ]
 };
@@ -306,5 +306,5 @@ function handleKeyPress(e) {
     }
 }
 
-// App starten - wie in Ihrem Beispiel
+// App starten 
 document.addEventListener('DOMContentLoaded', init);
