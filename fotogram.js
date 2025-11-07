@@ -12,3 +12,26 @@ const animalImages = [
 ];
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getNoteTemplate (){
+    return `
+    <section class=" "`;
+}
+
+
