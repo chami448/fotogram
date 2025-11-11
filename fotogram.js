@@ -119,7 +119,7 @@ function getNoteTemplate(){
                     <img src="${animal.file}" alt="${animal.alt}">
                     <figcaption>${animal.title}</figcaption> 
                 </figure>
-                <p class="description">${animal.description}</p>
+                
             </div>
         `).join('')}
     </section>`;
