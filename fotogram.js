@@ -89,6 +89,14 @@ const ANIMALS_DATA = {
 
 
 
+window.onload = function() {
+    document.getElementById('main').innerHTML = getNoteTemplate();
+};
+
+function renderMainContent(){
+    let contentRef = document.getElementById("main");
+    contentRef.innerHTML += getNoteTemplate();
+}
 
 
 
@@ -105,19 +113,18 @@ const ANIMALS_DATA = {
 function getNoteTemplate(){
     return `
     <section class="main-content">
-    <div class="cards-container">
-    <figure>
-        <img src="./img/${ANIMALS_DATA.animals[Math.floor(Math.random() * ANIMALS_DATA.animals.length)].file}" alt="Animal">
-        <figcaption>${ANIMALS_DATA.animals[Math.floor(Math.random() * ANIMALS_DATA.animals.length)].title}</figcaption> 
-    </figure>
-    <p class="description">${ANIMALS_DATA.animals[Math.floor(Math.random() * ANIMALS_DATA.animals.length)].description}</p>
-    </div>
-    
-    
-    
-    
+        ${ANIMALS_DATA.animals.map((animal, index) => `
+            <div class="cards-container" data-index="${index}">
+                <figure>
+                    <img src="${animal.file}" alt="${animal.alt}">
+                    <figcaption>${animal.title}</figcaption> 
+                </figure>
+                <p class="description">${animal.description}</p>
+            </div>
+        `).join('')}
     </section>`;
 }
+
 
 function renderDialog(){
     return `
@@ -137,7 +144,7 @@ function renderDialog(){
         <button id="nextBtn" class="nav-btn next-btn">&#8250;</button>
         </div>
         <div class="dialog-footer">
-        <span id="pictureCounter"></span>
+        <span id="pictureCounter">1/ ${ANIMALS_DATA.animals.length}</span>
         </div>
     </dialog>`;
 }

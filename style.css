@@ -58,6 +58,12 @@ main{
     width: 300px;
 }
 
+.cards-container:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
 .cards-container figure img {
     width: 100%;
     height: auto;
