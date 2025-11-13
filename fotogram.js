@@ -114,7 +114,7 @@ function getNoteTemplate(){
     return `
     <section class="main-content">
         ${ANIMALS_DATA.animals.map((animal, index) => `
-            <div class="cards-container" data-index="${index}">
+            <div class="cards-container" data-index="${index}" onclick="openDialog(${index})" tabindex="0">
                 <figure>
                     <img src="${animal.file}" alt="${animal.alt}">
                     <figcaption>${animal.title}</figcaption> 
@@ -130,7 +130,7 @@ function renderDialog(){
     return `
     <dialog id="dialog" class="modal">
     ${ANIMALS_DATA.animals.map((animal, index) => `
-        <section class="dialogContainer" aria-label="Safari Tiergalerie" data-index="${index}">
+        <section class="dialogContainer" aria-label="Safari Tiergalerie" data-index="${index}" tabindex="0">
         <div class="dialog-header">
                     <h2 id="dialogTitle">${animal.title}</h2>
                     <button id="closeBtn" class="close-btn">&times;</button>
@@ -155,4 +155,7 @@ function renderDialog(){
 }
 
 getNoteTemplate();
+
+
+
 
