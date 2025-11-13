@@ -86,7 +86,7 @@ const ANIMALS_DATA = {
     ]
 };
 
-
+let dialog = document.getElementById('dialog');
 
 
 window.onload = function() {
@@ -128,17 +128,19 @@ function getNoteTemplate(){
 
 function renderDialog(){
     return `
-    <dialog class="modal hidden">
+    <dialog id="dialog" class="modal">
+    ${ANIMALS_DATA.animals.map((animal, index) => `
+        <section class="dialogContainer" aria-label="Safari Tiergalerie" data-index="${index}">
         <div class="dialog-header">
-                    <h2 id="dialogTitle">Tiername</h2>
+                    <h2 id="dialogTitle">${animal.title}</h2>
                     <button id="closeBtn" class="close-btn">&times;</button>
                 </div>
         <div class="dialog-body">
         <button id="prevBtn" class="nav-btn prev-btn">&#8249;</button>
 
         <div class="image-container">
-            <img id="dialogImage" src="" alt="Animal Image">
-            <p id="dialogDescription"></p>
+            <img id="dialogImage" src="${animal.file}" alt="${animal.alt}">
+            <p id="dialogDescription">${animal.description}</p>
         </div>
 
         <button id="nextBtn" class="nav-btn next-btn">&#8250;</button>
@@ -146,7 +148,10 @@ function renderDialog(){
         <div class="dialog-footer">
         <span id="pictureCounter">1/ ${ANIMALS_DATA.animals.length}</span>
         </div>
+        </section>
+    `).join('')}
     </dialog>`;
+
 }
 
 getNoteTemplate();
