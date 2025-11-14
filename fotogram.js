@@ -86,7 +86,7 @@ const ANIMALS_DATA = {
     ]
 };
 
-let dialog = document.getElementById('dialog');
+let dialog = document.getElementById('#dialog');
 
 
 window.onload = function() {
@@ -156,6 +156,6 @@ function renderDialog(){
 
 getNoteTemplate();
 
-
-
-
+function openDialog(index){
+    dialog.showModal(index);
+}
