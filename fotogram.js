@@ -86,27 +86,24 @@ const ANIMALS_DATA = {
     ]
 };
 
-let dialog = document.getElementById('#dialog');
+
 
 
 window.onload = function() {
     document.getElementById('main').innerHTML = getNoteTemplate();
+    document.body.innerHTML += renderDialog();
+    dialog = document.getElementById('dialog');
+    console.log('Dialog erstellt:', dialog);  // Sollte nicht null sein
+    document.getElementById('closeBtn').onclick = closeDialog;
+
+
+    
 };
 
 function renderMainContent(){
     let contentRef = document.getElementById("main");
     contentRef.innerHTML += getNoteTemplate();
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -128,34 +125,60 @@ function getNoteTemplate(){
 
 function renderDialog(){
     return `
-    <dialog id="dialog" class="modal">
-    ${ANIMALS_DATA.animals.map((animal, index) => `
-        <section class="dialogContainer" aria-label="Safari Tiergalerie" data-index="${index}" tabindex="0">
+    <dialog id="dialog" class="modal hidden">
+        <section class="dialogContainer" aria-label="Safari Tiergalerie" data-index="" tabindex="0">
         <div class="dialog-header">
-                    <h2 id="dialogTitle">${animal.title}</h2>
+                    <h2 id="dialogTitle"></h2>
                     <button id="closeBtn" class="close-btn">&times;</button>
                 </div>
         <div class="dialog-body">
         <button id="prevBtn" class="nav-btn prev-btn">&#8249;</button>
 
         <div class="image-container">
-            <img id="dialogImage" src="${animal.file}" alt="${animal.alt}">
-            <p id="dialogDescription">${animal.description}</p>
+            <img id="dialogImage" src="" alt="">
+            <p id="dialogDescription"></p>
         </div>
 
         <button id="nextBtn" class="nav-btn next-btn">&#8250;</button>
         </div>
         <div class="dialog-footer">
-        <span id="pictureCounter">1/ ${ANIMALS_DATA.animals.length}</span>
+        <span id="pictureCounter"></span>
         </div>
         </section>
-    `).join('')}
+    
     </dialog>`;
 
 }
 
-getNoteTemplate();
+
+function dialogContent(index){
+    const animal = ANIMALS_DATA.animals[index];
+    document.getElementById('dialogTitle').textContent = animal.title;
+    document.getElementById('dialogImage').src = animal.file;
+    document.getElementById('dialogImage').alt = animal.alt;
+    document.getElementById('dialogDescription').textContent = animal.description;
+    document.getElementById('pictureCounter').textContent = `${index + 1} / ${ANIMALS_DATA.animals.length}`;
+    document.getElementById('prevBtn').onclick = function() {
+        let newIndex = (index - 1 + ANIMALS_DATA.animals.length) % ANIMALS_DATA.animals.length;
+        dialogContent(newIndex);
+    }
+    document.getElementById('nextBtn').onclick = function() {
+        let newIndex = (index + 1) % ANIMALS_DATA.animals.length;
+        dialogContent(newIndex);
+    }
+}
 
 function openDialog(index){
-    dialog.showModal(index);
+    document.getElementById('dialog').classList.remove('hidden');
+    dialogContent(index);
+    dialog.showModal();
+    
+}
+
+function closeDialog(){
+    document.getElementById('dialog').classList.add('hidden');
+    if(dialog){
+        dialog.close();
+    }
+    
 }
