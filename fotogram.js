@@ -1,15 +1,4 @@
-/*const animalImages = [
-    "birds.jpg", 
-    "elephants_1.jpg",
-    "elephants_2.jpg",
-    "gazelle.jpg",
-    "hippo.jpg",
-    "leopard_1.jpg",
-    "leopard_2.jpg",
-    "lion_1.jpg",
-    "lion_2.jpg",
-    "vulture.jpg"
-];*/
+
 
 const ANIMALS_DATA = {
     animals: [
@@ -89,23 +78,6 @@ const ANIMALS_DATA = {
 
 
 
-window.onload = function() {
-    document.getElementById('main').innerHTML = getNoteTemplate();
-    document.body.innerHTML += renderDialog();
-    dialog = document.getElementById('dialog');
-    console.log('Dialog erstellt:', dialog);  // Sollte nicht null sein
-    document.getElementById('closeBtn').onclick = closeDialog;
-
-
-    
-};
-
-function renderMainContent(){
-    let contentRef = document.getElementById("main");
-    contentRef.innerHTML += getNoteTemplate();
-}
-
-
 
 function getNoteTemplate(){
     return `
@@ -151,6 +123,12 @@ function renderDialog(){
 }
 
 
+function renderMainContent(){
+    let contentRef = document.getElementById("main");
+    contentRef.innerHTML += getNoteTemplate();
+}
+
+
 function dialogContent(index){
     const animal = ANIMALS_DATA.animals[index];
     document.getElementById('dialogTitle').textContent = animal.title;
@@ -180,5 +158,34 @@ function closeDialog(){
     if(dialog){
         dialog.close();
     }
-    
+
 }
+
+
+function keyboardEvent(){
+    const cards = document.querySelectorAll('.cards-container');
+
+    cards.forEach((card, index) =>{
+        card.addEventListener('keydown', function(e){
+            if (e.key === 'Enter' || e.key === ' '){
+                e.preventDefault();
+                openDialog(index);
+            }
+        })
+    })
+}
+
+
+
+
+window.onload = function() {
+    document.getElementById('main').innerHTML = getNoteTemplate();
+    document.body.innerHTML += renderDialog();
+    dialog = document.getElementById('dialog');
+    console.log('Dialog erstellt:', dialog);  // Sollte nicht null sein
+    document.getElementById('closeBtn').onclick = closeDialog;
+    keyboardEvent();
+
+
+    
+};
