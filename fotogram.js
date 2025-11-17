@@ -173,7 +173,15 @@ function keyboardEvent(){
             }
         })
     })
-}
+};
+
+function escapeKey(){
+    document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && dialog && dialog.open) {
+            closeDialog();
+        }
+    })
+};
 
 
 
@@ -182,9 +190,9 @@ window.onload = function() {
     document.getElementById('main').innerHTML = getNoteTemplate();
     document.body.innerHTML += renderDialog();
     dialog = document.getElementById('dialog');
-    console.log('Dialog erstellt:', dialog);  // Sollte nicht null sein
     document.getElementById('closeBtn').onclick = closeDialog;
     keyboardEvent();
+    escapeKey();
 
 
     
