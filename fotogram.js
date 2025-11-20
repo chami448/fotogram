@@ -187,6 +187,18 @@ function escapeKey(){
     })
 };
 
+function arrowDialogKeys(){
+    document.addEventListener('keydown', function(e){
+        if (dialog && dialog.open){
+            if (e.key === 'ArrowLeft'){
+                document.getElementById('prevBtn').click();
+            } else if (e.key === 'ArrowRight'){
+                document.getElementById('nextBtn').click();
+            }
+        }
+    })
+}
+
 
 
 
@@ -197,6 +209,7 @@ window.onload = function() {
     document.getElementById('closeBtn').onclick = closeDialog;
     keyboardEvent();
     escapeKey();
+    arrowDialogKeys()
 
 
     
