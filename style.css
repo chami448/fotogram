@@ -66,8 +66,10 @@ main{
 
 .cards-container figure img {
     width: 100%;
-    height: auto;
+    height: 250px;
     border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .cards-container figcaption {
@@ -130,9 +132,12 @@ dialog::backdrop{
 
 #dialogImage{
     width: 300px;
-    height: 300px;
+    height: 250px;
     border-radius: 10px;
     margin-bottom: 10px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
 }
 
 #prevBtn, #nextBtn{
@@ -141,6 +146,7 @@ dialog::backdrop{
     border: none;
     cursor: pointer;
     font-size: 55px;
+    margin: 20px;
     
 }
 
