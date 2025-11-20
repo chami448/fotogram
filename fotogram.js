@@ -104,14 +104,18 @@ function renderDialog(){
                     <button id="closeBtn" class="close-btn">&times;</button>
                 </div>
         <div class="dialog-body">
-        <button id="prevBtn" class="nav-btn prev-btn">&#8249;</button>
+        
 
         <div class="image-container">
             <img id="dialogImage" src="" alt="">
             <p id="dialogDescription"></p>
         </div>
 
-        <button id="nextBtn" class="nav-btn next-btn">&#8250;</button>
+        <div class="button-container">
+            <button id="prevBtn" class="nav-btn prev-btn">&#8249;</button>
+            <button id="nextBtn" class="nav-btn next-btn">&#8250;</button>
+            
+        </div>
         </div>
         <div class="dialog-footer">
         <span id="pictureCounter"></span>
