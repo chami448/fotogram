@@ -127,10 +127,6 @@ function renderDialog(){
 }
 
 
-function renderMainContent(){
-    let contentRef = document.getElementById("main");
-    contentRef.innerHTML += getNoteTemplate();
-}
 
 
 function dialogContent(index){
@@ -197,7 +193,15 @@ function arrowDialogKeys(){
             }
         }
     })
-}
+};
+
+function outsideClickClose(){
+    dialog.addEventListener('click', function(e) {
+        if (e.target === dialog) {
+            closeDialog();
+        }
+    });
+};
 
 
 
@@ -210,7 +214,5 @@ window.onload = function() {
     keyboardEvent();
     escapeKey();
     arrowDialogKeys()
-
-
-    
+    outsideClickClose();
 };
