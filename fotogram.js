@@ -137,12 +137,22 @@ function dialogContent(index){
     document.getElementById('dialogDescription').textContent = animal.description;
     document.getElementById('pictureCounter').textContent = `${index + 1} / ${ANIMALS_DATA.animals.length}`;
     document.getElementById('prevBtn').onclick = function() {
-        let newIndex = (index - 1 + ANIMALS_DATA.animals.length) % ANIMALS_DATA.animals.length;
-        dialogContent(newIndex);
+        let buttonIndex;
+        if (index === 0){
+            buttonIndex = ANIMALS_DATA.animals.length - 1;
+        } else{
+            buttonIndex = index -1;
+        }
+        dialogContent(buttonIndex);
     }
     document.getElementById('nextBtn').onclick = function() {
-        let newIndex = (index + 1) % ANIMALS_DATA.animals.length;
-        dialogContent(newIndex);
+        let buttonIndex;
+        if (index === ANIMALS_DATA.animals.length - 1){
+            buttonIndex = 0;
+        } else{
+            buttonIndex = index + 1;
+        }
+        dialogContent(buttonIndex);
     }
 }
 
