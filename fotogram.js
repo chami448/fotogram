@@ -83,7 +83,7 @@ function getNoteTemplate(){
     return `
     <section class="main-content">
         ${ANIMALS_DATA.animals.map((animal, index) => `
-            <div class="cards-container" data-index="${index}" onclick="openDialog(${index})" tabindex="0">
+            <div class="cards-container" onclick="openDialog(${index})" tabindex="0">
                 <figure>
                     <img src="${animal.file}" alt="${animal.alt}">
                     <figcaption>${animal.title}</figcaption> 
@@ -98,19 +98,19 @@ function getNoteTemplate(){
 function renderDialog(){
     return `
     <dialog id="dialog" class="modal hidden">
-        <section class="dialogContainer" aria-label="Safari Tiergalerie" data-index="" tabindex="0">
+        <section class="dialogContainer" aria-label="Safari Tiergalerie" tabindex="0">
         <div class="dialog-header">
                     <h2 id="dialogTitle"></h2>
-                    <button id="closeBtn" class="close-btn">&times;</button>
+                    <button id="closeBtn" class="close-btn" onclick="closeDialog()">&times;</button>
                 </div>
         <div class="dialog-body">
         
 
         <div class="image-container">
             <img id="dialogImage" src="" alt="">
-            <p id="dialogDescription"></p>
+            
         </div>
-
+        <p id="dialogDescription"></p>
         <div class="button-container">
             <button id="prevBtn" class="nav-btn prev-btn">&#8249;</button>
             <button id="nextBtn" class="nav-btn next-btn">&#8250;</button>
@@ -124,6 +124,11 @@ function renderDialog(){
     
     </dialog>`;
 
+}
+
+function foundationMainContent(){
+    document.getElementById('main').innerHTML = getNoteTemplate();
+    document.body.innerHTML += renderDialog();
 }
 
 
@@ -217,10 +222,9 @@ function outsideClickClose(){
 
 
 window.onload = function() {
-    document.getElementById('main').innerHTML = getNoteTemplate();
-    document.body.innerHTML += renderDialog();
+    foundationMainContent();
     dialog = document.getElementById('dialog');
-    document.getElementById('closeBtn').onclick = closeDialog;
+    dialogContent(0);
     keyboardEvent();
     escapeKey();
     arrowDialogKeys()
