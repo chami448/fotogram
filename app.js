@@ -1,4 +1,7 @@
 
+const main = document.getElementById('main');
+const dialog = document.getElementById('dialog');
+
 
 const ANIMALS_DATA = {
     animals: [
@@ -75,113 +78,86 @@ const ANIMALS_DATA = {
     ]
 };
 
-
-
-
-
-function getNoteTemplate(){
+function MainGalleryTemplate(){
     return `
-    <section class="main-content">
-        ${ANIMALS_DATA.animals.map((animal, index) => `
-            <div class="cards-container" onclick="openDialog(${index})" tabindex="0">
-                <figure>
-                    <img src="${animal.file}" alt="${animal.alt}">
-                    <figcaption>${animal.title}</figcaption> 
-                </figure>
-                
-            </div>
-        `).join('')}
-    </section>`;
-}
-
-
-function renderDialog(){
-    return `
-    
-        <section class="dialogContainer" aria-label="Safari Tiergalerie" tabindex="0">
-        <div class="dialog-header">
-                    <h2 id="dialogTitle"></h2>
-                    <button id="closeBtn" class="close-btn" onclick="closeDialog()">&times;</button>
+        <section class="main-content">
+            ${ANIMALS_DATA.animals.map((animal, id) => `
+                <div class="cards-container" onclick="openDialog(${id})" tabindex="0">
+                    <figure>
+                        <img src="${animal.file}" alt="${animal.alt}">
+                        <figcaption>${animal.title}</figcaption>
+                    </figure>
                 </div>
-        <div class="dialog-body">
-        
+            `).join('')}
+        </section>
+    `;
+};
 
-        <div class="image-container">
-            <img id="dialogImage" src="" alt="">
-            
-        </div>
-        <p id="dialogDescription"></p>
-        <div class="button-container">
-            <button id="prevBtn" class="nav-btn prev-btn">&#8249;</button>
-            <button id="nextBtn" class="nav-btn next-btn">&#8250;</button>
-            
-        </div>
-        </div>
-        <div class="dialog-footer">
-        <span id="pictureCounter"></span>
-        </div>
-        </section>`;
+function createDialogTemplate() {
+    return `
+        <section class="dialogContainer" aria-label="Safari Tiergalerie" tabindex="0">
+            <div class="dialog-header">
+                <h2 id="dialogTitle"></h2>
+                <button id="closeBtn" class="close-btn">&times;</button>
+            </div>
+            <div class="dialog-body">
+                <div class="image-container">
+                    <img id="dialogImage" src="" alt="">
+                </div>
+                <p id="dialogDescription"></p>
+                <div class="button-container">
+                    <button id="prevBtn" class="nav-btn prev-btn">&#8249;</button>
+                    <button id="nextBtn" class="nav-btn next-btn">&#8250;</button>
+                </div>
+            </div>
+            <div class="dialog-footer">
+                <span id="pictureCounter"></span>
+            </div>
+        </section>
+    `;
+};
 
-}
+function setupDOM(){
+    main.innerHTML = MainGalleryTemplate();
+    dialog.innerHTML = createDialogTemplate();
+};
 
-function foundationMainContent(){
-    document.getElementById('main').innerHTML = getNoteTemplate();
-}
+function dialogElements(){
+    dialogTitle = document.getElementById('dialogTitle');
+    dialogImage = document.getElementById('dialogImage');
+    dialogDescription = document.getElementById('dialogDescription');
+    pictureCounter = document.getElementById('pictureCounter');
+    closeBtn = document.getElementById('closeBtn');
+    prevBtn = document.getElementById('prevBtn');
+    nextBtn = document.getElementById('nextBtn');
+};
 
-function foundationDialogContent(){
-    dialog = renderDialog();
-    document.innerHTML = renderDialog();
-    document.appendChild(dialog);
-}
+function updateDialogContent(id){
+    const animal = ANIMALS_DATA.animals[id];
+    dialogTitle.textContent = animal.title;
+    dialogImage.src = animal.file;
+    dialogImage.alt = animal.alt;
+    dialogDescription.textContent = animal.description;
+    pictureCounter.textContent = `${id + 1} / ${ANIMALS_DATA.animals.length}`;
+};
 
-
-
-function dialogContent(index){
-    const animal = ANIMALS_DATA.animals[index];
-    document.getElementById('dialogTitle').textContent = animal.title;
-    document.getElementById('dialogImage').src = animal.file;
-    document.getElementById('dialogImage').alt = animal.alt;
-    document.getElementById('dialogDescription').textContent = animal.description;
-    document.getElementById('pictureCounter').textContent = `${index + 1} / ${ANIMALS_DATA.animals.length}`;
-    document.getElementById('prevBtn').onclick = function() {
-        let buttonIndex;
-        if (index === 0){
-            buttonIndex = ANIMALS_DATA.animals.length - 1;
-        } else{
-            buttonIndex = index -1;
-        }
-        dialogContent(buttonIndex);
-    }
-    document.getElementById('nextBtn').onclick = function() {
-        let buttonIndex;
-        if (index === ANIMALS_DATA.animals.length - 1){
-            buttonIndex = 0;
-        } else{
-            buttonIndex = index + 1;
-        }
-        dialogContent(buttonIndex);
-    }
-}
-
-function openDialog(index){
-
-    dialogContent(index);
+function openDialog(id){
+    updateDialogContent(id);
     dialog.showModal();
-}
+};
 
 function closeDialog(){
-        dialog.close();
-}
-
+    dialog.close();
+};
 
 function keyboardEvent(){
     const cards = document.querySelectorAll('.cards-container');
 
-    cards.forEach((card, index) =>{
+    cards.forEach((card, id) =>{
         card.addEventListener('keydown', function(e){
             if (e.key === 'Enter' || e.key === ' '){
                 e.preventDefault();
-                openDialog(index);
+                openDialog(id);
             }
         })
     })
@@ -189,7 +165,7 @@ function keyboardEvent(){
 
 function escapeKey(){
     document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && dialog && dialog.open) {
+        if (e.key === 'Escape' && dialog && dialog.open) { //Dialog open genau überprüfen
             closeDialog();
         }
     })
@@ -213,18 +189,4 @@ function outsideClickClose(){
             closeDialog();
         }
     });
-};
-
-
-
-
-window.onload = function() {
-    foundationMainContent();
-    foundationDialogContent();
-    dialog = document.getElementById('dialog');
-    dialogContent(0);
-    keyboardEvent();
-    escapeKey();
-    arrowDialogKeys()
-    outsideClickClose();
 };

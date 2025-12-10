@@ -9,9 +9,6 @@
     margin: 0;
 }
 
-.hidden{
-    display: none;
-}
 
 body{
     background-color: var(--primary-color);
