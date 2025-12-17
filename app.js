@@ -139,6 +139,25 @@ function updateDialogContent(id){
     dialogImage.alt = animal.alt;
     dialogDescription.textContent = animal.description;
     pictureCounter.textContent = `${id + 1} / ${ANIMALS_DATA.animals.length}`;
+    prevBtn.onclick = function(){
+        let buttonIndex;
+        if(id === 0){
+            buttonIndex = ANIMALS_DATA.animals.length - 1;
+        } else {
+            buttonIndex = id - 1;
+        }
+        updateDialogContent(buttonIndex);
+    }
+    nextBtn.onclick = function(){
+        let buttonIndex;
+        if ( id === ANIMALS_DATA.animals.length - 1){
+            buttonIndex = 0;
+        } else{
+            buttonIndex = id + 1;
+        }
+        updateDialogContent(buttonIndex);
+    }
+
 };
 
 function openDialog(id){
