@@ -84,6 +84,10 @@ main{
 
 /* Dialog Styles*/
 
+dialog:not([open]){
+    display: none;
+}
+
 dialog{
     display: flex;
     flex-direction: column;

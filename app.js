@@ -98,7 +98,7 @@ function createDialogTemplate() {
         <section class="dialogContainer" aria-label="Safari Tiergalerie" tabindex="0">
             <div class="dialog-header">
                 <h2 id="dialogTitle"></h2>
-                <button id="closeBtn" class="close-btn">&times;</button>
+                <button id="closeBtn" class="close-btn" onclick="closeDialog()">&times;</button>
             </div>
             <div class="dialog-body">
                 <div class="image-container">
@@ -106,8 +106,8 @@ function createDialogTemplate() {
                 </div>
                 <p id="dialogDescription"></p>
                 <div class="button-container">
-                    <button id="prevBtn" class="nav-btn prev-btn">&#8249;</button>
-                    <button id="nextBtn" class="nav-btn next-btn">&#8250;</button>
+                    <button id="prevBtn" class="nav-btn prev-btn" >&#8249;</button>
+                    <button id="nextBtn" class="nav-btn next-btn" >&#8250;</button>
                 </div>
             </div>
             <div class="dialog-footer">
@@ -190,3 +190,14 @@ function outsideClickClose(){
         }
     });
 };
+
+function init(){
+    setupDOM();
+    dialogElements();
+    keyboardEvent();
+    escapeKey();
+    arrowDialogKeys();
+    outsideClickClose();
+}
+
+window.onload = init;
