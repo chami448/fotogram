@@ -217,8 +217,8 @@ right: 6px;
 }
 }
 
-@media (max-width: 320px) {
-  dialog.modal, .modal {
+@media (max-width: 369px) {
+  dialog.modal {
     box-sizing: border-box;
     width: 94vw;
     max-width: 320px;
