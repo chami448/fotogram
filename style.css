@@ -216,24 +216,71 @@ left: 6px;
 right: 6px;
 }
 }
+
 @media (max-width: 320px) {
-dialog.modal{
-width: 90%;
-max-height: 80vh;
-padding: 8px;
-}
-#dialog-header{
-    width: 100px;
-font-size: 14px;
-}
-#dialogImage {
-max-height: calc(80vh - 500px);
-}
-#prevBtn, #nextBtn {
-width: 36px;
-height: 36px;
-font-size: 20px;
-left: 6px;
-right: 6px;
-}
+  dialog.modal, .modal {
+    box-sizing: border-box;
+    width: 94vw;
+    max-width: 320px;
+    padding: 8px;
+    margin: 0 auto;
+    overflow-x: hidden;   
+    max-height: 90vh;     
+  }
+
+  .image-container {
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  #dialogImage {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: calc(90vh - 140px); 
+    object-fit: contain;
+    display: block;
+    margin: 0;
+    border-radius: 10px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+    margin-top: 8px;
+    box-sizing: border-box;
+  }
+
+  #prevBtn, #nextBtn {
+    position: static;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 44%;
+    max-width: 150px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.6);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+  .dialog-footer {
+    margin-top: 6px;
+    padding: 4px;
+  }
+
+  #pictureCounter {
+    font-size: 13px;
+    line-height: 1;
+  }
 }
