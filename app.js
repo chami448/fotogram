@@ -2,6 +2,14 @@
 const main = document.getElementById('main');
 const dialog = document.getElementById('dialog');
 
+let dialogTitle;
+let dialogImage;
+let dialogDescription;
+let pictureCounter;
+let closeBtn;
+let prevBtn;
+let nextBtn;
+
 
 const ANIMALS_DATA = {
     animals: [
