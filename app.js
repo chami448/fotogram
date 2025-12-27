@@ -192,7 +192,7 @@ function keyboardEvent(){
 
 function escapeKey(){
     document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && dialog && dialog.open) { //Dialog open genau überprüfen
+        if (e.key === 'Escape' && dialog && dialog.open) { 
             closeDialog();
         }
     })
