@@ -145,28 +145,16 @@ function dialogElements() {
 function updateDialogContent(id) {
   const animal = ANIMALS_DATA.animals[id];
   dialogTitle.textContent = animal.title;
-  dialogImage.src = animal.file;
-  dialogImage.alt = animal.alt;
+  dialogImage.src = animal.file; dialogImage.alt = animal.alt;
   dialogDescription.textContent = animal.description;
   pictureCounter.textContent = `${id + 1} / ${ANIMALS_DATA.animals.length}`;
-  prevBtn.onclick = function () {
-    let buttonIndex;
-    if (id === 0) {
-      buttonIndex = ANIMALS_DATA.animals.length - 1;
-    } else {
-      buttonIndex = id - 1;
-    }
-    updateDialogContent(buttonIndex);
+  prevBtn.onclick = () => {
+    updateDialogContent((id - 1 + ANIMALS_DATA.animals.length) % ANIMALS_DATA.animals.length);
   };
-  nextBtn.onclick = function () {
-    let buttonIndex;
-    if (id === ANIMALS_DATA.animals.length - 1) {
-      buttonIndex = 0;
-    } else {
-      buttonIndex = id + 1;
-    }
-    updateDialogContent(buttonIndex);
+  nextBtn.onclick = () => {
+    updateDialogContent((id + 1) % ANIMALS_DATA.animals.length);
   };
+  return;
 }
 
 function openDialog(id) {
