@@ -21,6 +21,16 @@ header {
   background-color: var(--secondary-color);
 }
 
+.header-container{
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+
+}
+
 header img {
   width: 250px;
   height: 150px;
